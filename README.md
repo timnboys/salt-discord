@@ -28,10 +28,12 @@ Add the following to your `server.cfg`:
 ```cfg
 setr salt_discord_token "YOUR_BOT_TOKEN_HERE"
 setr salt_discord_client_id "YOUR_BOT_CLIENT_ID_HERE"
+setr salt_discord_owner_role_id "OWNER_ROLE_ID_HERE"
 ensure salt-discord
 ```
 
 - Replace `YOUR_BOT_TOKEN_HERE` and `YOUR_BOT_CLIENT_ID_HERE` with your Discord bot credentials.
+- Replace `OWNER_ROLE_ID_HERE` with your Discord role id.
 
 ---
 

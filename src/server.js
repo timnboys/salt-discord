@@ -94,7 +94,7 @@ function canRunCommand(member, commandName, cb) {
     });
 }
 
-if (!token || token === '' || !clientId || clientId === '') {
+if (!token || token === '' || !clientId || clientId === '' || !OWNER_ROLE_ID || OWNER_ROLE_ID === '') {
     console.error('^1[salt-discord] Discord token or client ID not found. Please set salt_discord_token, salt_discord_client_id and salt_discord_owner_role_id in your server.cfg^0');
 } else {
     const client = new Client({
