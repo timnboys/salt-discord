@@ -175,8 +175,8 @@ AddEventHandler('Core:Shared:Ready', function()
             local plyr = Fetch:SID(sid)
             if not plyr then return false end --Offline
             local char = plyr:GetData('Character')
-            local source = plyr:GetData('Source')
             if not char then return false end --Offline
+            local source = plyr:GetData('Source')
 
 
             if _type == "cash" then
@@ -203,7 +203,6 @@ AddEventHandler('Core:Shared:Ready', function()
 end)
 
 DISCORDBOT = {
-    Enabled = true,
     RegisterFunction = function(self, name, cb)
         print('Created export: '.. name)
         exports(name, cb)
