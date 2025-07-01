@@ -96,6 +96,13 @@ Below is a list of available Discord bot commands:
   - Set a player ped by SID.
   - Options: `sid` (Player SID), `ped` (Ped Model, e.g. mp_m_freemode_01)
 
+- **/onlinecount**
+  - Get the number of players currently online on the server.
+  - Replies with an embed showing:
+    - "Nobody is online right now." if 0
+    - "There is 1 person online right now." if 1
+    - "There are X people online right now." if more than 1
+
 ## Permissions Management
 
 The `/permissions` command allows the owner role to manage admin/mod roles, command permissions, and ignored commands directly from Discord. All changes are stored in the MySQL database.
