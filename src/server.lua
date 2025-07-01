@@ -92,8 +92,19 @@ AddEventHandler('Core:Shared:Ready', function()
             end
 
             -- Maybe a weapon check here
+            -- fuck it i have a new idea
+            -- Create false data for if it detects weapon..
+            local data = {}
+            if item:match('^WEAPON_') or item:match('^weapon_') then
+                item = item:upper()
+                data = { 
+                    ammo = 0,
+                    clip = 0,
+                    Scratched = nil
+                }
+            end
 
-            local success = Inventory:AddItem(sid, item, amount, {}, 1)
+            local success = Inventory:AddItem(sid, item, amount, data, 1)
             -- print(success)
             if not success then return false end
             return true
@@ -109,7 +120,7 @@ AddEventHandler('Core:Shared:Ready', function()
             local success = Inventory:AddItem(sid, weapon:upper(), 1, { 
                 ammo = ammo,
                 clip = 0,
-                Scratched = scractched == "1" or nil
+                Scratched = scractched == '1' or nil
             }, 1)
             if not success then return false end
             return true
@@ -161,7 +172,7 @@ AddEventHandler('Core:Shared:Ready', function()
             _type = tonumber(_type) or 0
             hash = GetHashKey(hash)
 
-            if type(hash) == "number" and make and model then
+            if type(hash) == 'number' and make and model then
                 Vehicles.Owned:AddToCharacter(sid, hash, _type, {
                     make = make,
                     model = model,
@@ -195,20 +206,20 @@ AddEventHandler('Core:Shared:Ready', function()
             local source = plyr:GetData('Source')
 
 
-            if _type == "cash" then
-                -- local currentCash = char:GetData("Cash")
+            if _type == 'cash' then
+                -- local currentCash = char:GetData('Cash')
                 -- local newCashBalance = math.floor(currentCash + amount)
                 -- if newCashBalance >= 0 then
-                --     char:SetData("Cash", newCashBalance)
+                --     char:SetData('Cash', newCashBalance)
                 -- end
                 Wallet:Modify(source, amount)
                 return true
-            elseif _type == "bank" then 
-                local bankAccount = char:GetData("BankAccount")
+            elseif _type == 'bank' then 
+                local bankAccount = char:GetData('BankAccount')
                 -- local bankAccount = Banking.Accounts:GetPersonal(sid).Account
                 Banking.Balance:Deposit(bankAccount, amount, {
-                    type = "deposit",
-                    title = "God Deposit",
+                    type = 'deposit',
+                    title = 'God Deposit',
                     description = ('God deposited %s'):format(amount),
                 })
                 return true
@@ -225,9 +236,9 @@ DISCORDBOT = {
         -- exports(name, function(...) -- use tis in javascript directly?
         --     local invoker = GetInvokingResource()
         --     local current = GetCurrentResourceName()
-        --     print("INVOKER", invoker, invoker ~= current)
+        --     print('INVOKER', invoker, invoker ~= current)
         --     if invoker ~= current then
-        --         print(('[SECURITY] Export "%s" was called from "%s" (blocked)'):format(name, invoker or 'unknown'))
+        --         print(('[SECURITY] Export '%s' was called from '%s' (blocked)'):format(name, invoker or 'unknown'))
         --         -- optional: auto-ban/flag/report the resource
         --         return
         --     end

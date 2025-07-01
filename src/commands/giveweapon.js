@@ -49,7 +49,7 @@ module.exports = {
             .addFields(
                 { name: 'Weapon', value: weapon, inline: true },
                 { name: 'Ammo', value: ammo.toString(), inline: true },
-                { name: 'Scracthed', value: scractched, inline: true },
+                { name: 'Scratched', value: scractched, inline: true },
                 { name: 'SID', value: sid, inline: true },
             )
             .setTimestamp();
