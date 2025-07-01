@@ -1,0 +1,16 @@
+{
+  "name": "salt-discord",
+  "version": "1.0.0",
+  "description": "A simple discord bot for FiveM",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.27.3",
+    "discord.js": "^13.6.0"
+  },
+  "author": "",
+  "license": "ISC"
+} 
