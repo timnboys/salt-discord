@@ -103,6 +103,10 @@ Below is a list of available Discord bot commands:
     - "There is 1 person online right now." if 1
     - "There are X people online right now." if more than 1
 
+- **/heal**
+  - Heal a player by SID, or all players.
+  - Options: `sid` (Player SID or "all" for all players)
+
 ## Permissions Management
 
 The `/permissions` command allows the owner role to manage admin/mod roles, command permissions, and ignored commands directly from Discord. All changes are stored in the MySQL database.

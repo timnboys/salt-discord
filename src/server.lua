@@ -8,6 +8,7 @@ function RetrieveComponents()
     Vehicles = exports['mythic-base']:FetchComponent('Vehicles')
     Wallet = exports['mythic-base']:FetchComponent('Wallet') -- for cash?
     Banking = exports['mythic-base']:FetchComponent('Banking') -- for bank? why
+    Callbacks = exports['mythic-base']:FetchComponent('Callbacks')
 end
 
 function FetchCharacterFromDB(stateId) -- functions that call this need to await but i could just await all main funcs anyway
@@ -40,6 +41,7 @@ AddEventHandler('Core:Shared:Ready', function()
         'Vehicles',
         'Wallet',
         'Banking',
+        'Callbacks',
     }, function(error)
         if #error > 0 then return; end
         RetrieveComponents()
@@ -279,6 +281,21 @@ AddEventHandler('Core:Shared:Ready', function()
 
             local res = Citizen.Await(p)
             return res
+        end)
+
+        DISCORDBOT:RegisterFunction('heal', function(sid) --untested but should work ?
+            if sid == "all" then
+                Callbacks:ClientCallback(-1, "Damage:Heal", true)
+                return true
+            end
+            sid = tonumber(sid)
+
+            local plyr = Fetch:SID(sid)
+            if not plyr then return false end --Offline
+            local char = plyr:GetData('Character')
+            if not char then return false end --Offline
+            Callbacks:ClientCallback(char:GetData("Source"), "Damage:Heal", true)
+            return true
         end)
 
     end)
