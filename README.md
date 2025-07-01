@@ -82,6 +82,18 @@ Below is a list of available Discord bot commands:
 - **/getjobs**
   - Gets a list of all jobs currently on the server.
 
+- **/addcrypto**
+  - Give cryptocurrency to a character.
+  - Options: `sid` (Player SID), `crypto` (VRM, PLEB, or HEIST), `amount` (amount to give)
+
+- **/addfleetvehicle**
+  - Add a Fleet Vehicle to a Job.
+  - Options: `job` (Job name), `workplace` (Workplace ID or "false"/"all"), `level` (Required Level), `hash` (Vehicle Model), `make` (Make), `model` (Model Name), `class` (Class), `value` (Monetary Value), `type` (Car/Boats/Aircraft), `qual` (Job Qualification or "false"/"all")
+
+- **/setped**
+  - Set a player ped by SID.
+  - Options: `sid` (Player SID), `ped` (Ped Model, e.g. mp_m_freemode_01)
+
 ## Permissions Management
 
 The `/permissions` command allows the owner role to manage admin/mod roles, command permissions, and ignored commands directly from Discord. All changes are stored in the MySQL database.
