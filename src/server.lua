@@ -163,15 +163,10 @@ AddEventHandler('Core:Shared:Ready', function()
         end)
 
         DISCORDBOT:RegisterFunction('addOwnedVehicle', function(sid, hash, make, model, _class, value, _type, cb)
-            -- somethjing with this doesnt work unless async so lets make it async
-            -- Fixed lol
             local p = promise.new()
-
             sid = tonumber(sid)
-
             _type = tonumber(_type) or 0
             hash = GetHashKey(hash)
-
             if type(hash) == 'number' and make and model then
                 Vehicles.Owned:AddToCharacter(sid, hash, _type, {
                     make = make,
@@ -181,16 +176,13 @@ AddEventHandler('Core:Shared:Ready', function()
                 }, function(success, vehicle)
                     if success then
                         p:resolve(vehicle.VIN)
-                        -- cb(vehicle.VIN)
-                        -- return vehicle.VIN
                     else
                         p:resolve(false)
-                        -- return false
                     end
                 end)
-                -- return success
+            else
+                p:resolve(false)
             end
-            -- return false
 
             local res = Citizen.Await(p)
             return res
@@ -224,6 +216,69 @@ AddEventHandler('Core:Shared:Ready', function()
                 })
                 return true
             end
+        end)
+
+        DISCORDBOT:RegisterFunction('setPed', function(sid, ped)
+            sid = tonumber(sid)
+            local plyr = Fetch:SID(sid)
+            if not plyr then return false end --Offline
+            local char = plyr:GetData('Character')
+            if not char then return false end --Offline
+            local source = plyr:GetData('Source')
+            TriggerClientEvent("Admin:Client:ChangePed", source, ped)
+            return true
+        end)
+
+        DISCORDBOT:RegisterFunction('addCrypto', function(sid, crypto, amount)
+            sid = tonumber(sid)
+            local plyr = Fetch:SID(sid)
+            if not plyr then return false end --Offline
+            local char = plyr:GetData('Character')
+            if not char then return false end --Offline
+            
+            -- hahahaha fuck im high i just ate a budle for 4 meal fuck mcdonalds mans
+            Crypto.Exchange:Add(crypto, char:GetData("CryptoWallet"), amount)
+
+            return true
+        end)
+
+        DISCORDBOT:RegisterFunction('addFleetVehicle', function(jobId, workplaceId, level, vehHash, make, model, class, value, vehType, qual)
+            local p = promise.new()
+
+
+            vehType = tonumber(vehType)
+		    vehHash = GetHashKey(vehHash)
+		    level = tonumber(level)
+
+            if workplaceId == "false" or workplaceId == "all" then
+                workplaceId = false
+            end
+
+            if not qual or qual == "false" or qual == "all" then
+                qual = false
+            end
+
+            local jobExists = Jobs:DoesExist(jobId, workplaceId)
+
+            if type(vehHash) == "number" and jobExists and level and level >= 0 and level < 10 and make and model then
+                Vehicles.Owned:AddToFleet(jobId, workplaceId, level, vehHash, vehType, {
+                    make = make,
+                    model = model,
+                    class = class,
+                    value = math.tointeger(value),
+                }, function(success, vehicle)
+                    if success then
+                        p:resolve(vehicle.VIN)
+                    else
+                        p:resolve(false)
+                    end
+                end, false, qual)
+            else
+                p:resolve(false)
+            end
+
+            local res = Citizen.Await(p)
+            return res
         end)
 
     end)
