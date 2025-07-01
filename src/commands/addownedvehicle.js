@@ -40,11 +40,22 @@ module.exports = {
             description: 'Monetary Value of Vehicle e.g 50000',
             required: true,
         },
+        // {
+        //     name: 'type',
+        //     type: 4,
+        //     description: 'Vehicle/Car = 0; Boats = 1; Aircraft = 2;',
+        //     required: true,
+        // },
         {
             name: 'type',
-            type: 4,
-            description: 'Vehicle/Car = 0; Boats = 1; Aircraft = 2;',
+            type: 4, // string
+            description: 'Vehicle Type',
             required: true,
+            choices: [
+                { name: 'Car', value: 0 },
+                { name: 'Boats', value: 1 },
+                { name: 'Aircraft', value: 2 },
+            ],
         },
     ],
     execute: async (interaction) => {

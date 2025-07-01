@@ -39,31 +39,53 @@ ensure salt-discord
 
 ### Discord Slash Commands
 
-- `/players` — Lists all players currently on the server, with detailed info (SID, phone, etc.)
-- `/getjobs` — Lists all jobs available on the server, with grades and workplaces, paginated.
-- `/givejob` — Assigns a job to a player by SID, with job, grade, and optional workplace.
-- `/removejob` — Removes a job from a player by SID.
-- `/checkjobs` — Shows all jobs a character (by SID) currently has, with grade and workplace details.
-- `/ping` — Simple bot ping command.
-- `/giveitem` — Gives an item to a player (if implemented).
-- ...and more as you add them!
+Below is a list of available Discord bot commands:
 
+- **/ping**
+  - Replies with Pong! (latency test)
+
+- **/players**
+  - Gets a list of all players currently on the server.
+
+- **/givemoney**
+  - Give money to a player by SID.
+  - Options: `sid` (Player SID), `type` (bank or cash), `amount` (amount to give)
+
+- **/giveitem**
+  - Give an item to a player by SID.
+  - Options: `sid` (Player SID), `item` (item name), `amount` (amount)
+
+- **/giveweapon**
+  - Give a weapon to a player by SID.
+  - Options: `sid` (Player SID), `weapon` (weapon name), `ammo` (amount), `scractched` (True/False)
+
+- **/addownedvehicle**
+  - Add owned vehicle to player.
+  - Options: `sid`, `hash` (vehicle model), `make`, `model`, `class`, `value`, `type` (0=Car, 1=Boat, 2=Aircraft)
+
+- **/givejob**
+  - Give a job to a player by SID.
+  - Options: `sid`, `job`, `grade`, `workplace` (optional)
+
+- **/removejob**
+  - Remove a player's job by SID.
+  - Options: `sid`, `job`
+
+- **/setowner**
+  - Set a job's owner by SID.
+  - Options: `sid`, `job`
+
+- **/checkjobs**
+  - Shows the jobs a character has.
+  - Options: `sid`
+
+- **/getjobs**
+  - Gets a list of all jobs currently on the server.
 #### Example: Give a Job
 
 ```
 /givejob target:1234 job:police grade:chief workplace:lspd
 ```
-
----
-
-## Screenshots
-![image](https://github.com/user-attachments/assets/adf0a2e4-a5f2-404f-ae0f-95ad0f0d7f3e)
-![image](https://github.com/user-attachments/assets/7ff8a176-871b-4e3f-905f-8c9fd79c6878)
-![image](https://github.com/user-attachments/assets/207f17bd-17d9-4aa2-8ea2-5e369b7127ab)
-![image](https://github.com/user-attachments/assets/8bfed61e-1b4c-4ec7-b93d-0a5907667489)
-![image](https://github.com/user-attachments/assets/08a14a50-2ae2-40a0-a334-a9c3990da1a1)
-
-
 
 ---
 
