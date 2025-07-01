@@ -6,6 +6,8 @@ function RetrieveComponents()
     Jobs = exports['mythic-base']:FetchComponent('Jobs')
     Database = exports['mythic-base']:FetchComponent('Database')
     Vehicles = exports['mythic-base']:FetchComponent('Vehicles')
+    Wallet = exports['mythic-base']:FetchComponent('Wallet') -- for cash?
+    Banking = exports['mythic-base']:FetchComponent('Banking') -- for bank? why
 end
 
 function FetchCharacterFromDB(stateId) -- functions that call this need to await but i could just await all main funcs anyway
@@ -36,6 +38,8 @@ AddEventHandler('Core:Shared:Ready', function()
         'Jobs',
         'Database',
         'Vehicles',
+        'Wallet',
+        'Banking',
     }, function(error)
         if #error > 0 then return; end
         RetrieveComponents()
@@ -133,6 +137,7 @@ AddEventHandler('Core:Shared:Ready', function()
 
         DISCORDBOT:RegisterFunction('addOwnedVehicle', function(sid, hash, make, model, _class, value, _type, cb)
             -- somethjing with this doesnt work unless async so lets make it async
+            -- Fixed lol
             local p = promise.new()
 
             sid = tonumber(sid)
@@ -162,6 +167,36 @@ AddEventHandler('Core:Shared:Ready', function()
 
             local res = Citizen.Await(p)
             return res
+        end)
+
+        DISCORDBOT:RegisterFunction('giveMoney', function(sid, _type, amount) -- Player has to be online for this to work
+            sid = tonumber(sid)
+            -- Wallet:Modify(source, -(math.abs(cost))) -- Wallet wont work because it calls source and not sid basically just have to edit data 
+            local plyr = Fetch:SID(sid)
+            if not plyr then return false end --Offline
+            local char = plyr:GetData('Character')
+            local source = plyr:GetData('Source')
+            if not char then return false end --Offline
+
+
+            if _type == "cash" then
+                -- local currentCash = char:GetData("Cash")
+                -- local newCashBalance = math.floor(currentCash + amount)
+                -- if newCashBalance >= 0 then
+                --     char:SetData("Cash", newCashBalance)
+                -- end
+                Wallet:Modify(source, amount)
+                return true
+            elseif _type == "bank" then 
+                local bankAccount = char:GetData("BankAccount")
+                -- local bankAccount = Banking.Accounts:GetPersonal(sid).Account
+                Banking.Balance:Deposit(bankAccount, amount, {
+                    type = "deposit",
+                    title = "God Deposit",
+                    description = ('God deposited %s'):format(amount),
+                })
+                return true
+            end
         end)
 
     end)
