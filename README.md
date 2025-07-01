@@ -56,6 +56,17 @@ ensure salt-discord
 
 ---
 
+## Screenshots
+![image](https://github.com/user-attachments/assets/adf0a2e4-a5f2-404f-ae0f-95ad0f0d7f3e)
+![image](https://github.com/user-attachments/assets/7ff8a176-871b-4e3f-905f-8c9fd79c6878)
+![image](https://github.com/user-attachments/assets/207f17bd-17d9-4aa2-8ea2-5e369b7127ab)
+![image](https://github.com/user-attachments/assets/8bfed61e-1b4c-4ec7-b93d-0a5907667489)
+![image](https://github.com/user-attachments/assets/08a14a50-2ae2-40a0-a334-a9c3990da1a1)
+
+
+
+---
+
 ## Development
 
 - **Commands** are located in `src/commands/`
