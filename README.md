@@ -81,11 +81,44 @@ Below is a list of available Discord bot commands:
 
 - **/getjobs**
   - Gets a list of all jobs currently on the server.
-#### Example: Give a Job
 
-```
-/givejob target:1234 job:police grade:chief workplace:lspd
-```
+## Permissions Management
+
+The `/permissions` command allows the owner role to manage admin/mod roles, command permissions, and ignored commands directly from Discord. All changes are stored in the MySQL database.
+
+### Usage
+
+#### Add/Remove Admin or Mod Roles
+- `/permissions action:add_admin_role role:@Admin`
+- `/permissions action:remove_admin_role role:@Admin`
+- `/permissions action:add_mod_role role:@Mod`
+- `/permissions action:remove_mod_role role:@Mod`
+
+#### Set Command Permissions
+- `/permissions action:set_command_permission command:giveitem roles:admin`  
+  (Only admin roles can use `giveitem`)
+- `/permissions action:set_command_permission command:giveitem roles:mod`  
+  (Only mod roles can use `giveitem`)
+- `/permissions action:set_command_permission command:giveitem roles:both`  
+  (Both admin and mod roles can use `giveitem`)
+- `/permissions action:set_command_permission command:giveitem roles:none`  
+  (No staff roles can use `giveitem`)
+
+#### Manage Ignored Commands
+- `/permissions action:add_ignored_command command:ping`  
+  (Everyone can use the `ping` command, regardless of role)
+- `/permissions action:remove_ignored_command command:ping`  
+  (Removes `ping` from the ignored list)
+
+#### List All Permissions
+- `/permissions action:list`
+
+This will display:
+- All admin and mod roles
+- All ignored commands
+- All command permissions and which roles can use them
+
+**Note:** Only users with the owner role (set by `salt_discord_owner_role_id` in your config) can use the `/permissions` command.
 
 ---
 
