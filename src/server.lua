@@ -99,6 +99,22 @@ AddEventHandler('Core:Shared:Ready', function()
             return true
         end)
 
+        DISCORDBOT:RegisterFunction('giveWeapon', function(sid, weapon, ammo, scractched) -- fails if sid is offline or source is not found
+            sid = tonumber(sid)
+            local player = Fetch:SID(sid)
+            if not player then 
+                return false
+            end
+
+            local success = Inventory:AddItem(sid, weapon:upper(), 1, { 
+                ammo = ammo,
+                clip = 0,
+                Scratched = scractched == "1" or nil
+            }, 1)
+            if not success then return false end
+            return true
+        end)
+
         DISCORDBOT:RegisterFunction('getJobs', function()
             local jobs = Jobs:GetAll() -- list of jobs
             return jobs
