@@ -1,14 +1,14 @@
 AddEventHandler('Discordbot:Shared:DependencyUpdate', RetrieveComponents) 
 function RetrieveComponents()
-    Fetch = exports['mythic-base']:FetchComponent('Fetch')
-    Discordbot = exports['mythic-base']:FetchComponent('Discordbot')
-    Inventory = exports['mythic-base']:FetchComponent('Inventory')
-    Jobs = exports['mythic-base']:FetchComponent('Jobs')
-    Database = exports['mythic-base']:FetchComponent('Database')
-    Vehicles = exports['mythic-base']:FetchComponent('Vehicles')
-    Wallet = exports['mythic-base']:FetchComponent('Wallet') -- for cash?
-    Banking = exports['mythic-base']:FetchComponent('Banking') -- for bank? why
-    Callbacks = exports['mythic-base']:FetchComponent('Callbacks')
+    Fetch = exports['sandbox-base']:FetchComponent('Fetch')
+    Discordbot = exports['sandbox-base']:FetchComponent('Discordbot')
+    Inventory = exports['sandbox-base']:FetchComponent('Inventory')
+    Jobs = exports['sandbox-base']:FetchComponent('Jobs')
+    Database = exports['sandbox-base']:FetchComponent('Database')
+    Vehicles = exports['sandbox-base']:FetchComponent('Vehicles')
+    Wallet = exports['sandbox-base']:FetchComponent('Wallet') -- for cash?
+    Banking = exports['sandbox-base']:FetchComponent('Banking') -- for bank? why
+    Callbacks = exports['sandbox-base']:FetchComponent('Callbacks')
 end
 
 function FetchCharacterFromDB(stateId) -- functions that call this need to await but i could just await all main funcs anyway
@@ -32,7 +32,7 @@ end
 
 
 AddEventHandler('Core:Shared:Ready', function()
-    exports['mythic-base']:RequestDependencies('Discordbot', { 
+    exports['sandbox-base']:RequestDependencies('Discordbot', { 
         'Fetch',
         'Discordbot',
         'Inventory',
@@ -321,11 +321,11 @@ DISCORDBOT = {
 
 
 AddEventHandler('Proxy:Shared:RegisterReady', function()
-    exports['mythic-base']:RegisterComponent('Discordbot', DISCORDBOT)
+    exports['sandbox-base']:RegisterComponent('Discordbot', DISCORDBOT)
 end)
 
 -- AddEventHandler('Proxy:Shared:ExtendReady', function(component)
 --     if component == 'Discordbot' then
---         exports['mythic-base']:ExtendComponent(component, DISCORDBOT)
+--         exports['sandbox-base']:ExtendComponent(component, DISCORDBOT)
 --     end
 -- end)
