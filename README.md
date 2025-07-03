@@ -107,6 +107,11 @@ Below is a list of available Discord bot commands:
   - Heal a player by SID, or all players.
   - Options: `sid` (Player SID or "all" for all players)
 
+- **/nuke**
+  - Dramatically launches a nuclear strike on the server, triggering a 23-second countdown with Discord embed updates at key moments. At the end, the nuke detonates and a final embed is shown. Intended for fun or dramatic server events.
+  - Usage: `/nuke`
+  - Only available to users with the appropriate permissions (typically admins/owners).
+
 ## Permissions Management
 
 The `/permissions` command allows the owner role to manage admin/mod roles, command permissions, and ignored commands directly from Discord. All changes are stored in the MySQL database.
