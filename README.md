@@ -108,7 +108,7 @@ Below is a list of available Discord bot commands:
   - Options: `sid` (Player SID or "all" for all players)
 
 - **/nuke**
-  - Dramatically launches a nuclear strike on the server, triggering a 23-second countdown with Discord embed updates at key moments. At the end, the nuke detonates and a final embed is shown. Intended for fun or dramatic server events.
+  - Disabled, Would cause way too much havoc.
   - Usage: `/nuke`
   - Only available to users with the appropriate permissions (typically admins/owners).
 
