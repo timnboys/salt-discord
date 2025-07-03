@@ -21,8 +21,6 @@ module.exports = {
             .setColor(success ? 0x00AE86 : 0xFF0000)
             .setTitle(success ? 'Healed Successfully' : 'Failed to Heal')
             .addFields(
-                { name: 'Item', value: item, inline: true },
-                { name: 'Amount', value: amount.toString(), inline: true },
                 { name: 'SID', value: sid, inline: true },
             )
             .setTimestamp();

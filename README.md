@@ -26,9 +26,9 @@ A FiveM resource for Discord integration, providing in-game commands and player/
 Add the following to your `server.cfg`:
 
 ```cfg
-setr salt_discord_token "YOUR_BOT_TOKEN_HERE"
-setr salt_discord_client_id "YOUR_BOT_CLIENT_ID_HERE"
-setr salt_discord_owner_role_id "OWNER_ROLE_ID_HERE"
+set salt_discord_token "YOUR_BOT_TOKEN_HERE"
+set salt_discord_client_id "YOUR_BOT_CLIENT_ID_HERE"
+set salt_discord_owner_role_id "OWNER_ROLE_ID_HERE"
 ensure salt-discord
 ```
 
