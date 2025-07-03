@@ -1,6 +1,7 @@
 # salt-discord
 
 A FiveM resource for Discord integration, providing in-game commands and player/job management via Discord slash commands.
+Specifically for Sandbox Framework, converted from Mythic Framework.
 
 ---
 
